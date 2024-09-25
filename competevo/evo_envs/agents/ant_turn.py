@@ -296,14 +296,14 @@ class DevAntTurn(Agent):
     
     def before_step(self):
         self.env.data.geom_xpos[1] = self.GOAL
-        self._xposbefore = self.get_body_com("0")[:2]
-        self.dist_before = np.linalg.norm(self.GOAL[:2]-self._xposbefore)
+        self._xposbefore = self.get_body_com("0")[0]
         torso_quat = self.env.data.qpos[3:7]
         self.torso_euler = self.quat2euler(torso_quat)
         #degree
         # self.torso_euler = np.rad2deg(self.torso_euler)
         # print("Torso Euler:", self.torso_euler)
         # self.heading = [np.cos(self.torso_euler[2]), np.sin(self.torso_euler[2])]
+        self.dist_before = np.linalg.norm(self.GOAL[:2]-self._xposbefore)
 
     def after_step(self, action):
         xposafter = self.get_body_com("0")[:2]
