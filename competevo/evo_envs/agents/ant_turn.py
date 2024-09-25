@@ -12,12 +12,12 @@ from lib.utils import get_single_body_qposaddr, get_graph_fc_edges
 
 SCALE_MAX = 0.3
 
-class DevAntTurn(Agent):
+class AntTurn(Agent):
 
     def __init__(self, agent_id, cfg, xml_path=None, n_agents=2, **kwargs):
         if xml_path is None:
             xml_path = os.path.join(os.path.dirname(__file__), "assets", "dev_ant_body.xml")
-        super(DevAntTurn, self).__init__(agent_id, xml_path, n_agents, **kwargs)
+        super(AntTurn, self).__init__(agent_id, xml_path, n_agents, **kwargs)
 
         parser = XMLParser(remove_blank_text=True)
         self.tree = parse(xml_path, parser=parser)
@@ -62,214 +62,214 @@ class DevAntTurn(Agent):
         self.scale_vector = scale_state
         # print(scale_state)
 
-        design_params = self.scale_vector * SCALE_MAX
-        a = design_params + 1.
-        b = design_params*0.5 + 1 # for gear only
+        # design_params = self.scale_vector * SCALE_MAX
+        # a = design_params + 1.
+        # b = design_params*0.5 + 1 # for gear only
 
-        def multiply_str(s, m):
-            res = [str(float(x) * m) for x in s.split()]
-            res_str = ' '.join(res)
-            return res_str
+        # def multiply_str(s, m):
+        #     res = [str(float(x) * m) for x in s.split()]
+        #     res_str = ' '.join(res)
+        #     return res_str
 
-        agent_body = self.tree.find('body')
-        for body in agent_body.iter('body'):
-            cur_name = body.get('name')
+        # agent_body = self.tree.find('body')
+        # for body in agent_body.iter('body'):
+        #     cur_name = body.get('name')
 
-            # 1
-            if cur_name == "1":
-                geom = body.find('geom') #1
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[0])
-                    geom.set("fromto", p)
+        #     # 1
+        #     if cur_name == "1":
+        #         geom = body.find('geom') #1
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[0])
+        #             geom.set("fromto", p)
 
-            if cur_name == "11":
-                p = body.get("pos")
-                p = multiply_str(p, a[0])
-                body.set("pos", p)
+        #     if cur_name == "11":
+        #         p = body.get("pos")
+        #         p = multiply_str(p, a[0])
+        #         body.set("pos", p)
 
-                geom = body.find('geom') #11
-                p = geom.get("size")
-                p = multiply_str(p, a[1])
-                geom.set("size", p)
+        #         geom = body.find('geom') #11
+        #         p = geom.get("size")
+        #         p = multiply_str(p, a[1])
+        #         geom.set("size", p)
 
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[2])
-                    geom.set("fromto", p)
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[2])
+        #             geom.set("fromto", p)
 
-            if cur_name == "111":
-                p = body.get("pos")
-                p = multiply_str(p, a[2])
-                body.set("pos", p)
+        #     if cur_name == "111":
+        #         p = body.get("pos")
+        #         p = multiply_str(p, a[2])
+        #         body.set("pos", p)
 
-                geom = body.find('geom') #111
-                p = geom.get("size")
-                p = multiply_str(p, a[3])
-                geom.set("size", p)
+        #         geom = body.find('geom') #111
+        #         p = geom.get("size")
+        #         p = multiply_str(p, a[3])
+        #         geom.set("size", p)
 
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[4])
-                    geom.set("fromto", p)
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[4])
+        #             geom.set("fromto", p)
 
-            # 2
-            if cur_name == "2":
-                geom = body.find('geom') #2
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[5])
-                    geom.set("fromto", p)
+        #     # 2
+        #     if cur_name == "2":
+        #         geom = body.find('geom') #2
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[5])
+        #             geom.set("fromto", p)
 
-            if cur_name == "12":
-                p = body.get("pos")
-                p = multiply_str(p, a[5])
-                body.set("pos", p)
+        #     if cur_name == "12":
+        #         p = body.get("pos")
+        #         p = multiply_str(p, a[5])
+        #         body.set("pos", p)
 
-                geom = body.find('geom') #12
-                p = geom.get("size")
-                p = multiply_str(p, a[6])
-                geom.set("size", p)
+        #         geom = body.find('geom') #12
+        #         p = geom.get("size")
+        #         p = multiply_str(p, a[6])
+        #         geom.set("size", p)
 
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[7])
-                    geom.set("fromto", p)
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[7])
+        #             geom.set("fromto", p)
 
-            if cur_name == "112":
-                p = body.get("pos")
-                p = multiply_str(p, a[7])
-                body.set("pos", p)
+        #     if cur_name == "112":
+        #         p = body.get("pos")
+        #         p = multiply_str(p, a[7])
+        #         body.set("pos", p)
 
-                geom = body.find('geom') #112
-                p = geom.get("size")
-                p = multiply_str(p, a[8])
-                geom.set("size", p)
+        #         geom = body.find('geom') #112
+        #         p = geom.get("size")
+        #         p = multiply_str(p, a[8])
+        #         geom.set("size", p)
 
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[9])
-                    geom.set("fromto", p)
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[9])
+        #             geom.set("fromto", p)
 
-            # 3
-            if cur_name == "3":
-                geom = body.find('geom') #3
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[10])
-                    geom.set("fromto", p)
+        #     # 3
+        #     if cur_name == "3":
+        #         geom = body.find('geom') #3
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[10])
+        #             geom.set("fromto", p)
 
-            if cur_name == "13":
-                p = body.get("pos")
-                p = multiply_str(p, a[10])
-                body.set("pos", p)
+        #     if cur_name == "13":
+        #         p = body.get("pos")
+        #         p = multiply_str(p, a[10])
+        #         body.set("pos", p)
 
-                geom = body.find('geom') #13
-                p = geom.get("size")
-                p = multiply_str(p, a[11])
-                geom.set("size", p)
+        #         geom = body.find('geom') #13
+        #         p = geom.get("size")
+        #         p = multiply_str(p, a[11])
+        #         geom.set("size", p)
 
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[12])
-                    geom.set("fromto", p)
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[12])
+        #             geom.set("fromto", p)
 
-            if cur_name == "113":
-                p = body.get("pos")
-                p = multiply_str(p, a[12])
-                body.set("pos", p)
+        #     if cur_name == "113":
+        #         p = body.get("pos")
+        #         p = multiply_str(p, a[12])
+        #         body.set("pos", p)
 
-                geom = body.find('geom') #113
-                p = geom.get("size")
-                p = multiply_str(p, a[13])
-                geom.set("size", p)
+        #         geom = body.find('geom') #113
+        #         p = geom.get("size")
+        #         p = multiply_str(p, a[13])
+        #         geom.set("size", p)
 
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[14])
-                    geom.set("fromto", p)
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[14])
+        #             geom.set("fromto", p)
 
-            # 4
-            if cur_name == "4":
-                geom = body.find('geom') #4
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[15])
-                    geom.set("fromto", p)
+        #     # 4
+        #     if cur_name == "4":
+        #         geom = body.find('geom') #4
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[15])
+        #             geom.set("fromto", p)
 
-            if cur_name == "14":
-                p = body.get("pos")
-                p = multiply_str(p, a[15])
-                body.set("pos", p)
+        #     if cur_name == "14":
+        #         p = body.get("pos")
+        #         p = multiply_str(p, a[15])
+        #         body.set("pos", p)
 
-                geom = body.find('geom') #14
-                p = geom.get("size")
-                p = multiply_str(p, a[16])
-                geom.set("size", p)
+        #         geom = body.find('geom') #14
+        #         p = geom.get("size")
+        #         p = multiply_str(p, a[16])
+        #         geom.set("size", p)
 
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[17])
-                    geom.set("fromto", p)
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[17])
+        #             geom.set("fromto", p)
 
-            if cur_name == "114":
-                p = body.get("pos")
-                p = multiply_str(p, a[17])
-                body.set("pos", p)
+        #     if cur_name == "114":
+        #         p = body.get("pos")
+        #         p = multiply_str(p, a[17])
+        #         body.set("pos", p)
 
-                geom = body.find('geom') #114
-                p = geom.get("size")
-                p = multiply_str(p, a[18])
-                geom.set("size", p)
+        #         geom = body.find('geom') #114
+        #         p = geom.get("size")
+        #         p = multiply_str(p, a[18])
+        #         geom.set("size", p)
 
-                if geom is not None:
-                    p = geom.get("fromto")
-                    p = multiply_str(p, a[19])
-                    geom.set("fromto", p)
+        #         if geom is not None:
+        #             p = geom.get("fromto")
+        #             p = multiply_str(p, a[19])
+        #             geom.set("fromto", p)
 
-        agent_actuator = self.tree.find('actuator')
-        for motor in agent_actuator.iter("motor"):
-            cur_name = motor.get("name").split('_')[0]
+        # agent_actuator = self.tree.find('actuator')
+        # for motor in agent_actuator.iter("motor"):
+        #     cur_name = motor.get("name").split('_')[0]
 
-            if cur_name == "11":
-                p = motor.get("gear")
-                p = multiply_str(p, b[1])
-                motor.set("gear", p)
+        #     if cur_name == "11":
+        #         p = motor.get("gear")
+        #         p = multiply_str(p, b[1])
+        #         motor.set("gear", p)
 
-            if cur_name == "111":
-                p = motor.get("gear")
-                p = multiply_str(p, b[3])
-                motor.set("gear", p)
+        #     if cur_name == "111":
+        #         p = motor.get("gear")
+        #         p = multiply_str(p, b[3])
+        #         motor.set("gear", p)
 
-            if cur_name == "12":
-                p = motor.get("gear")
-                p = multiply_str(p, b[6])
-                motor.set("gear", p)
+        #     if cur_name == "12":
+        #         p = motor.get("gear")
+        #         p = multiply_str(p, b[6])
+        #         motor.set("gear", p)
 
-            if cur_name == "112":
-                p = motor.get("gear")
-                p = multiply_str(p, b[8])
-                motor.set("gear", p)
+        #     if cur_name == "112":
+        #         p = motor.get("gear")
+        #         p = multiply_str(p, b[8])
+        #         motor.set("gear", p)
 
-            if cur_name == "13":
-                p = motor.get("gear")
-                p = multiply_str(p, b[11])
-                motor.set("gear", p)
+        #     if cur_name == "13":
+        #         p = motor.get("gear")
+        #         p = multiply_str(p, b[11])
+        #         motor.set("gear", p)
 
-            if cur_name == "113":
-                p = motor.get("gear")
-                p = multiply_str(p, b[13])
-                motor.set("gear", p)
+        #     if cur_name == "113":
+        #         p = motor.get("gear")
+        #         p = multiply_str(p, b[13])
+        #         motor.set("gear", p)
 
-            if cur_name == "14":
-                p = motor.get("gear")
-                p = multiply_str(p, b[16])
-                motor.set("gear", p)
+        #     if cur_name == "14":
+        #         p = motor.get("gear")
+        #         p = multiply_str(p, b[16])
+        #         motor.set("gear", p)
 
-            if cur_name == "114":
-                p = motor.get("gear")
-                p = multiply_str(p, b[18])
-                motor.set("gear", p)
+        #     if cur_name == "114":
+        #         p = motor.get("gear")
+        #         p = multiply_str(p, b[18])
+        #         motor.set("gear", p)
 
         # print(etree.tostring(self.tree, pretty_print=True).decode('utf-8'))
         self.cur_xml_str = etree.tostring(self.tree, pretty_print=True).decode('utf-8')
@@ -296,14 +296,14 @@ class DevAntTurn(Agent):
     
     def before_step(self):
         self.env.data.geom_xpos[1] = self.GOAL
-        self._xposbefore = self.get_body_com("0")[0]
+        self._xposbefore = self.get_body_com("0")[:2]
+        self.dist_before = np.linalg.norm(self.GOAL[:2]-self._xposbefore)
         torso_quat = self.env.data.qpos[3:7]
         self.torso_euler = self.quat2euler(torso_quat)
         #degree
         # self.torso_euler = np.rad2deg(self.torso_euler)
         # print("Torso Euler:", self.torso_euler)
         # self.heading = [np.cos(self.torso_euler[2]), np.sin(self.torso_euler[2])]
-        self.dist_before = np.linalg.norm(self.GOAL[:2]-self._xposbefore)
 
     def after_step(self, action):
         xposafter = self.get_body_com("0")[:2]

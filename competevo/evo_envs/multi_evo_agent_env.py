@@ -69,7 +69,7 @@ class MultiEvoAgentEnv(MujocoEnv):
         # ),
     }
     WORLD_XML = os.path.join(os.path.dirname(__file__), "assets", "world_body.xml")
-    GOAL_REWARD = 10000
+    GOAL_REWARD = 1000
 
     def __init__(
         self, 
