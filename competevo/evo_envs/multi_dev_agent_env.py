@@ -78,6 +78,11 @@ class MultiDevAgentEnv(MujocoEnv):
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
             Humanoid
         ),
+        'dev_ant_turn': (
+            os.path.join(os.path.dirname(__file__), "assets", "dev_ant_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevAntTurn
+        ),
     }
     WORLD_XML = os.path.join(os.path.dirname(__file__), "assets", "world_body.xml")
     GOAL_REWARD = 1000
