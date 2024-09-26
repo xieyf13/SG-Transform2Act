@@ -627,12 +627,12 @@ class MultiEvoAgentRunner(BaseRunner):
                 next_states, env_rewards, terminateds, truncated, infos = self.env.step(actions)
                 
                 # 使用 MuJoCo 的渲染方法
-                # frame = self.env.env_scene.mujoco_renderer.render(render_mode='rgb_array')
+                frame = self.env.env_scene.mujoco_renderer.render(render_mode='rgb_array')
 
                 # #保存图片
-                # img = Image.fromarray(frame)
-                # # img.save('test.jpg')
-                # imgs.append(img)
+                img = Image.fromarray(frame)
+                img.save('test.jpg')
+                imgs.append(img)
 
                 # if len(infos) >1:
                 #     frame = infos[-1]

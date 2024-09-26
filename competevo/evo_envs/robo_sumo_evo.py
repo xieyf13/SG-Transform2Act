@@ -180,9 +180,12 @@ class RoboSumoEvoEnv(MultiEvoAgentEnv):
 
         for i, agent in self.agents.items():
             self_xyz = agent.get_qpos()[:3]
+            if self_xyz[2] > 0.8 + self.arena_height:
+                dones[i] = True
+                game_done = True
             # Loose penalty
             infos[i]['lose_penalty'] = 0.
-            if (self_xyz[2] < 0.29 + self.arena_height or self_xyz[2] > 1.3 + self.arena_height or 
+            if (self_xyz[2] < 0.29 + self.arena_height or
                 np.sqrt(np.sum(self_xyz[:2]**2)) > self.RADIUS):
                 infos[i]['lose_penalty'] = - self.WIN_REWARD
                 dones[i] = True
@@ -192,7 +195,7 @@ class RoboSumoEvoEnv(MultiEvoAgentEnv):
             for j, opp in self.agents.items():
                 if i == j: continue
                 opp_xyz = opp.get_qpos()[:3]
-                if (opp_xyz[2] < 0.29 + self.arena_height or 
+                if (opp_xyz[2] < 0.29 + self.arena_height or
                     np.sqrt(np.sum(opp_xyz[:2]**2)) > self.RADIUS):
                     infos[i]['win_reward'] += self.WIN_REWARD
                     infos[i]['winner'] = True
