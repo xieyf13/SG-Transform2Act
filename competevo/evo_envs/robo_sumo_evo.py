@@ -180,9 +180,10 @@ class RoboSumoEvoEnv(MultiEvoAgentEnv):
 
         for i, agent in self.agents.items():
             self_xyz = agent.get_qpos()[:3]
-            if not (np.isfinite(agent.get_qpos()).all() and np.isfinite(agent.get_qvel()).all() and (self_xyz[2] > 0.29 + self.arena_height) and (self_xyz[2]  < 0.8 + self.arena_height)):
-                dones[i] = True
-                game_done = True
+            if not (np.isfinite(agent.get_qpos()).all() and np.isfinite(agent.get_qvel()).all() and (self_xyz[2] > 0.29 + self.arena_height) and (self_xyz[2]  < 1.0 + self.arena_height)):
+                # dones[i] = True
+                # game_done = True
+                infos[i]['lose_penalty'] = -infos[i]['alive_reward']
             # Loose penalty
             infos[i]['lose_penalty'] = 0.
             if (self_xyz[2] < 0.29 + self.arena_height or
