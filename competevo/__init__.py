@@ -40,7 +40,23 @@ register(
     disable_env_checker=True,
     kwargs={'agent_names': ['evo_ant_fighter', 'evo_ant_fighter'],
             'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
-            'init_pos': [(-1, 0, 1.3), (1, 0, 1.3)],
+            'init_pos': [(-1, 0, 1.25), (1, 0, 1.25)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='robo-sumo-sgevoants-v0',
+    entry_point='competevo.evo_envs:RoboSumoEvoEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_evo_ant_fighter', 'sg_evo_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.25), (1, 0, 1.25)],
             'ini_euler': [(0, 0, 0), (0, 0, 180)],
             # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
             'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
@@ -272,10 +288,10 @@ register(
 )
 
 register(
-    id='turn-to-goal-evoant-v0',
+    id='turn-to-goal-evoant-sgt2a',
     entry_point='competevo.evo_envs:MultiEvoAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['evo_ant_turn'],
+    kwargs={'agent_names': ['evo_ant_turn_sgt2a'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],
@@ -416,10 +432,10 @@ register(
 )
 
 register(
-    id='turn-to-goal-evoant-v1',
+    id='turn-to-goal-evoant-t2awojsmlp',
     entry_point='competevo.evo_envs:MultiEvoAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['evo_ant_turn1'],
+    kwargs={'agent_names': ['evo_ant_turn_t2awojsmlp'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],
@@ -464,10 +480,10 @@ register(
 )
 
 register(
-    id='turn-to-goal-evoant-v4',
+    id='turn-to-goal-evoant-t2a',
     entry_point='competevo.evo_envs:MultiEvoAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['evo_ant_turn4'],
+    kwargs={'agent_names': ['evo_ant_turn_t2a'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],
@@ -480,10 +496,10 @@ register(
 )
 
 register(
-    id='turn-to-goal-evoant-v5',
+    id='turn-to-goal-evoant-t1awfixpos',
     entry_point='competevo.evo_envs:MultiEvoAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['evo_ant_turn5'],
+    kwargs={'agent_names': ['evo_ant_turn_t1awfixpos'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],

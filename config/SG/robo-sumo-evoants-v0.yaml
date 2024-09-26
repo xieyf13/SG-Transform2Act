@@ -4,6 +4,32 @@ runner_type: multi-evo-agent-runner
 agent_specs:
   batch_design: true
 
+robot:
+  param_mapping: sin
+  no_root_offset: true
+  
+  body_params:
+    offset:
+      type: 'xy'
+      # lb: [-0.5, -0.5]
+      # ub: [0.5, 0.5]
+      lb: [-0.4, -0.4]
+      ub: [0.4, 0.4]
+
+  joint_params: {}
+
+  geom_params:
+    size:
+      lb: 0.03
+      ub: 0.10
+    # ext_start:
+    #   lb: 0.0
+    #   ub: 0.2
+
+  actuator_params:
+    gear:
+      lb: 20
+      ub: 400
 # training parameters
 gamma: 0.995
 tau: 0.95
@@ -38,8 +64,8 @@ evo_policy_specs:
   attr_log_std: -2.3
   fix_control_std: false
   fix_attr_std: false
-  egnn: True
-  z_num: 7
+  # egnn: false
+  # z_num: 7
 policy_optimizer: 'Adam'
 policy_lr: 5.e-5
 policy_momentum: 0.0
@@ -55,8 +81,8 @@ evo_value_specs:
     hdims: [64, 64, 64]
     aggr: add
     bias: true
-  egnn: True
-  z_num: 7
+  # egnn: false
+  # z_num: 7
 value_optimizer: 'Adam'
 value_lr: 3.e-4
 value_momentum: 0.0
@@ -92,32 +118,7 @@ enable_remove: true
 add_body_condition:
   max_nchild: 2
 
-robot:
-  param_mapping: sin
-  no_root_offset: true
-  
-  body_params:
-    offset:
-      type: 'xy'
-      # lb: [-0.5, -0.5]
-      # ub: [0.5, 0.5]
-      lb: [-0.4, -0.4]
-      ub: [0.4, 0.4]
 
-  joint_params: {}
-
-  geom_params:
-    size:
-      lb: 0.03
-      ub: 0.10
-    # ext_start:
-    #   lb: 0.0
-    #   ub: 0.2
-
-  actuator_params:
-    gear:
-      lb: 20
-      ub: 400
 
 use_reward_scaling: False
 use_opponent_sample: True
