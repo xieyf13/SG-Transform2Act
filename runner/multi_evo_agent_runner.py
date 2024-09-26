@@ -596,7 +596,7 @@ class MultiEvoAgentRunner(BaseRunner):
                 self.logger.critical(f"save best checkpoint with agent_{i}'s rewards {self.learners[i].best_reward:.2f}!")
                 save('%s/%s/best.p' % (self.model_dir, "agent_"+str(i)), i)
     
-    def display(self, num_episode=3, mean_action=True):
+    def display(self, num_episode=3, mean_action=True, ckpt_dir=None):
         t_start = time.time()
         # total score record: [agent_0_win_times, agent_1_win_times, games_num]
         total_score = [0 for _ in self.learners]
@@ -709,7 +709,11 @@ class MultiEvoAgentRunner(BaseRunner):
         # import csv
 
         # Append results to test.csv
-        with open('test_ants.csv', mode='a', newline='') as file:
+        if ckpt_dir:
+            save_path = ckpt_dir + '/test.csv'
+        else:
+            save_path = 'test.csv'
+        with open(save_path, mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([self.learners[0].epoch+1, agent0_reward, agent0_win_rate, agent1_reward, agent1_win_rate])
 
