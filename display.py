@@ -79,6 +79,8 @@ def main():
     # runner = MultiEvoAgentRunner(cfg, logger, dtype, device, 
     #                              num_threads=args.num_threads, training=False)
 
+    torch.set_num_threads(1)
+
     if cfg.runner_type == "multi-agent-runner":
         runner = MultiAgentRunner(cfg, logger, dtype, device, training=False, ckpt_dir=args.ckpt_dir, ckpt=ckpt)
     elif cfg.runner_type == "selfplay-agent-runner":
