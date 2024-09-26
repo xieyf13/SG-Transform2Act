@@ -1,10 +1,11 @@
-env_name: test-robo-sumo-sgdevant-devant-v0
+env_name: test-robo-sumo-sgant-ant-v0
 runner_type: multi-evo-agent-runner
 
 agent_specs:
   batch_design: true
 
 egnn: True
+z_num: 7
 
 robot:
   param_mapping: sin
@@ -66,7 +67,7 @@ clip_epsilon: 0.2
 min_batch_size: 50000
 mini_batch_size: 2048
 num_optim_epoch: 10
-max_epoch_num: 1000
+max_epoch_num: 200
 seed: 42
 save_model_interval: 1
 
