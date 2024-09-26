@@ -31,6 +31,7 @@ def main():
     parser.add_argument('--ckpt', type=str, default='best')
     parser.add_argument('--symmetric', type=str2bool, default=True)
     parser.add_argument('--gpu_index', type=int, default=-1)
+    parser.add_argument('--num_episode', type=int, default=1)
     args = parser.parse_args()
     # Load config file
     args.run_dir = os.path.split(args.cfg)[0] + '/'
@@ -88,7 +89,7 @@ def main():
     elif cfg.runner_type == "multi-evo-agent-runner":
         runner = MultiEvoAgentRunner(cfg, logger, dtype, device, training=False, ckpt_dir=args.ckpt_dir, ckpt=ckpt)
     
-    runner.display(num_episode=1, mean_action=False, ckpt_dir=args.ckpt_dir)
+    runner.display(num_episode=args.num_episode, mean_action=False, ckpt_dir=args.ckpt_dir)
 
 if __name__ == "__main__":
     main()
