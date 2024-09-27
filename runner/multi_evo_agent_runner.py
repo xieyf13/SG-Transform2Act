@@ -100,7 +100,7 @@ class MultiEvoAgentRunner(BaseRunner):
         self.logger.info("Policy update, spending: {:.2f} s.".format(t2-t1))
 
         """evaluate policy"""
-        _, log_evals, win_rate = self.sample(self.cfg.eval_batch_size, mean_action=True, nthreads=10, eval=True)
+        _, log_evals, win_rate = self.sample(self.cfg.eval_batch_size, mean_action=False, nthreads=10, eval=True)
         t3 = time.time()
         self.logger.info("Evaluation time: {:.2f} s.".format(t3-t2))
 
@@ -512,19 +512,19 @@ class MultiEvoAgentRunner(BaseRunner):
                         for l in design_params_1[i][1]:
                             design_params1.append(l)
 
-                    if len(design_params0) > 10:
-                        design_params0 = random.sample(design_params0, 10)
-                    if len(design_params1) > 10:
-                        design_params1 = random.sample(design_params1, 10)
+                    # if len(design_params0) > 10:
+                    #     design_params0 = random.sample(design_params0, 10)
+                    # if len(design_params1) > 10:
+                    #     design_params1 = random.sample(design_params1, 10)
 
-                    for d in design_params0:
-                        file_path = self.run_dir + '/' + '0.csv'
-                        d = [self.epoch] + list(d)
-                        write_csv_data(file_path, d)
-                    for d in design_params1:
-                        file_path = self.run_dir + '/' + '1.csv'
-                        d = [self.epoch] + list(d)
-                        write_csv_data(file_path, d)
+                    # for d in design_params0:
+                    #     file_path = self.run_dir + '/' + '0.csv'
+                    #     d = [self.epoch] + list(d)
+                    #     write_csv_data(file_path, d)
+                    # for d in design_params1:
+                    #     file_path = self.run_dir + '/' + '1.csv'
+                    #     d = [self.epoch] + list(d)
+                    #     write_csv_data(file_path, d)
 
                     # merge batch data and log data from multiprocessings
                     ma_buffer_0 = self.traj_cls(memories_0).buffers
