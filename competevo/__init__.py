@@ -451,6 +451,54 @@ register(
 )
 
 register(
+    id='turn-to-goal-evoant-t2ap-sgt2av',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_t2ap_sgt2av'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-sgt2ap-t2av',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_sgt2ap_t2av'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-sgt2awjsmlp',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_sgt2a_jsmlp'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
     id='turn-to-goal-devant-v0',
     entry_point='competevo.evo_envs:MultiDevAgentEnv',
     disable_env_checker=True,

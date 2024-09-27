@@ -39,6 +39,29 @@ class MultiEvoAgentEnv(MujocoEnv):
             os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_sgt2a.xml"),
             EvoAntTurn
         ),
+        'evo_ant_turn_sgt2a_jsmlp': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_sgt2a_jsmlp.xml"),
+            EvoAntTurn
+        ),
+
+        'evo_ant_turn_sgt2ap_t2av': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_sgt2ap_t2av.xml"),
+            EvoAntTurn
+        ),
+
+
+        'evo_ant_turn_t2ap_sgt2av': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_t2ap_sgt2av.xml"),
+            EvoAntTurn
+        ),
+
+
         'evo_ant_turn_t2awojsmlp': (
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 

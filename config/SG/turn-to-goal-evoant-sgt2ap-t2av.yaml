@@ -1,4 +1,4 @@
-env_name: turn-to-goal-evoant-sgt2a
+env_name: turn-to-goal-evoant-sgt2ap-t2av
 runner_type: multi-evo-agent-runner
 
 agent_specs:
