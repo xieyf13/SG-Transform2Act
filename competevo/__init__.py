@@ -467,10 +467,42 @@ register(
 )
 
 register(
+    id='turn-to-goal-devant-simple',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['dev_ant_turn_simple'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
     id='turn-to-goal-sgdevant-v0',
     entry_point='competevo.evo_envs:MultiDevAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['dev_ant_turn'],
+    kwargs={'agent_names': ['sg_dev_ant_turn'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-sgdevant-simple',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_dev_ant_turn_simple'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],

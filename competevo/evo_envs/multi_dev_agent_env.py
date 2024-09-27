@@ -101,6 +101,21 @@ class MultiDevAgentEnv(MujocoEnv):
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
             DevAntTurn
         ),
+        'sg_dev_ant_turn': (
+            os.path.join(os.path.dirname(__file__), "assets", "sg_dev_ant_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevAntTurn
+        ),
+        'dev_ant_turn_simple': (
+            os.path.join(os.path.dirname(__file__), "assets", "dev_ant_simple_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevAntTurnSimple
+        ),
+        'sg_dev_ant_turn_simple': (
+            os.path.join(os.path.dirname(__file__), "assets", "sg_dev_ant_simple_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevAntTurnSimple
+        ),
         'ant_turn': (
             os.path.join(os.path.dirname(__file__), "assets", "ant_body.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
