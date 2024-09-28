@@ -1,6 +1,7 @@
 from .evo_ant import EvoAnt
 from .evo_ant_turn import EvoAntTurn
 from .evo_ant_turn_dn import EvoAntTurnDN
+from .evo_ant_turn_hn import EvoAntTurnHN
 from .dev_ant import DevAnt
 from .dev_ant_fighter import DevAntFighter
 from .ant_fighter import AntFighter
