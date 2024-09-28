@@ -63,6 +63,7 @@ class LoggerRL:
         logger.avg_reward = logger.stats_loggers['reward'].avg()
         logger.min_dist = logger.stats_loggers['dist'].min()
         logger.max_dist = logger.stats_loggers['dist'].max()
+        logger.avg_dist = logger.stats_loggers['dist'].avg()
         if logger.use_c_reward:
             logger.total_c_reward = logger.stats_loggers['c_reward'].total()
             logger.avg_c_reward = logger.stats_loggers['c_reward'].avg()
