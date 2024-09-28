@@ -295,7 +295,8 @@ class DevAntTurnSimple(Agent):
         return np.array([X, Y, Z])
     
     def before_step(self):
-        self._xposbefore = self.get_body_com("0")[:2]
+        self._xposbefore = self.get_body_com("0")[:2].copy()
+        # self._xposbefore1 = self.get_body_com("0")[:2]
         torso_quat = self.env.data.qpos[3:7]
         self.torso_euler = self.quat2euler(torso_quat)
         # goal_pos_theta = self.torso_euler[2]
