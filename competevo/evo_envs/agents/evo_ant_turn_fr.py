@@ -143,7 +143,8 @@ class EvoAntTurnFR(Ant):
         info = reward_info
         info['use_transform_action'] = False
         info['stage'] = 'execution'
-        info['dist'] = 5*forward_reward
+        info['dist'] = self.dist_after
+        info['fw'] = 5*forward_reward
 
         # terminate condition
         qpos = self.get_qpos()

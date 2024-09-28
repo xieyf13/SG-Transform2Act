@@ -28,6 +28,8 @@ class LoggerRL:
         self.stats_loggers['reward'].log(reward)
         if 'dist' in info:
             self.stats_loggers['dist'].log(info['dist'])
+        if 'fw' in info:
+            self.episode_reward -= info['fw']
         if self.use_c_reward:
             self.episode_c_reward += c_reward
             self.stats_loggers['c_reward'].log(c_reward)
