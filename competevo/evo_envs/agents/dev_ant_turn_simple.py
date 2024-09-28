@@ -298,14 +298,14 @@ class DevAntTurnSimple(Agent):
         self._xposbefore = self.get_body_com("0")[:2]
         torso_quat = self.env.data.qpos[3:7]
         self.torso_euler = self.quat2euler(torso_quat)
-        goal_pos_theta = self.torso_euler[2]
-        goal = np.array([3 * np.cos(goal_pos_theta), 3 * np.sin(goal_pos_theta), 0])
-        goal[:2] += self._xposbefore 
-        self.set_goal(goal)
-        self.env.data.geom_xpos[1] = self.GOAL
+        # goal_pos_theta = self.torso_euler[2]
+        # goal = np.array([3 * np.cos(goal_pos_theta), 3 * np.sin(goal_pos_theta), 0])
+        # goal[:2] += self._xposbefore 
+        # self.set_goal(goal)
+        # self.env.data.geom_xpos[1] = self.GOAL
 
 
-        self.dist_before = np.linalg.norm(self.GOAL[:2]-self._xposbefore)
+        # self.dist_before = np.linalg.norm(self.GOAL[:2]-self._xposbefore)
         #degree
         # self.torso_euler = np.rad2deg(self.torso_euler)
         # print("Torso Euler:", self.torso_euler)
@@ -313,8 +313,8 @@ class DevAntTurnSimple(Agent):
 
     def after_step(self, action):
         xposafter = self.get_body_com("0")[:2]
-        self.dist_after = np.linalg.norm(self.GOAL[:2]-xposafter)
-        dist_reward = (self.dist_before - self.dist_after) / self.env.dt
+        # self.dist_after = np.linalg.norm(self.GOAL[:2]-xposafter)
+        # dist_reward = (self.dist_before - self.dist_after) / self.env.dt
         heading = np.array([np.cos(self.torso_euler[2]), np.sin(self.torso_euler[2])])
         forward_reward =  np.dot(heading, xposafter - self._xposbefore) / self.env.dt
 
@@ -329,10 +329,10 @@ class DevAntTurnSimple(Agent):
         contact_cost = 0
 
         survive = 1.0
-        reward = 0*forward_reward+ 10*dist_reward - ctrl_cost - contact_cost + survive
+        reward = 10*forward_reward - ctrl_cost - contact_cost + survive
 
         reward_info = dict()
-        reward_info['reward_dist'] = dist_reward
+        reward_info['reward_dist'] = 0
         reward_info['reward_forward'] = forward_reward
         reward_info['reward_ctrl'] = ctrl_cost
         reward_info['reward_contact'] = contact_cost
@@ -342,7 +342,7 @@ class DevAntTurnSimple(Agent):
         info = reward_info
         info['use_transform_action'] = False
         info['stage'] = 'execution'
-        info['dist'] = self.dist_after
+        info['dist'] = forward_reward
 
         # terminate condition
         qpos = self.get_qpos()
@@ -397,8 +397,9 @@ class DevAntTurnSimple(Agent):
 
         root_pos = qpos[:2]
         root_pos = np.append(root_pos, 0)
-        other_pos = self.GOAL
-        other_pos = other_pos - root_pos
+        # other_pos = self.GOAL
+        # other_pos = other_pos - root_pos
+        other_pos = np.zeros(3)
 
 
         obs = []
@@ -460,7 +461,7 @@ class DevAntTurnSimple(Agent):
 
 
     def reset_agent(self,**kwargs):
-        goal_pos_r = 3#np.random.uniform(3, 4)
+        goal_pos_r = 0#np.random.uniform(3, 4)
         if 'symmetric' in kwargs and kwargs['symmetric']:
             goal_pos_theta = np.random.uniform(0, 2*np.pi)
             self.symmetric = True
