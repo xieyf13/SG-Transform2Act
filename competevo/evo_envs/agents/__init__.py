@@ -16,6 +16,7 @@ from .dev_spider import DevSpider
 from .dev_spider_fighter import DevSpiderFighter
 
 from .dev_humanoid import DevHumanoid
+from .dev_humanoid_hn import DevHumanoidHN
 from .humanoid import Humanoid
 from .dev_ant_turn import DevAntTurn
 from .dev_ant_turn_simple import DevAntTurnSimple

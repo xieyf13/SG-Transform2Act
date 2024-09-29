@@ -91,6 +91,11 @@ class MultiDevAgentEnv(MujocoEnv):
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
             DevHumanoid
         ),
+        'dev_humanoid_hn': (
+            os.path.join(os.path.dirname(__file__), "assets", "dev_humanoid_body_hn.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevHumanoidHN
+        ),
         'humanoid': (
             os.path.join(os.path.dirname(__file__), "assets", "humanoid_body.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
