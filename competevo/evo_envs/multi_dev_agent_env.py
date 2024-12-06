@@ -20,6 +20,23 @@ class MultiDevAgentEnv(MujocoEnv):
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
             DevAnt
         ),
+        'ant_fighter': (
+            os.path.join(os.path.dirname(__file__), "assets", "ant_body.xml"),
+            AntFighter
+        ),
+        'sg_ant_fighter': (
+            os.path.join(os.path.dirname(__file__), "assets", "sg_ant_body.xml"),
+            AntFighter
+        ),
+        'test_ant_fighter': (
+            os.path.join(os.path.dirname(__file__), "assets", "test_ant_body.xml"),
+            AntFighter
+        ),
+        'test_sg_ant_fighter': (
+            os.path.join(os.path.dirname(__file__), "assets", "test_sg_ant_body.xml"),
+            AntFighter
+        ),
+
         'dev_ant_fighter': (
             os.path.join(os.path.dirname(__file__), "assets", "dev_ant_body.xml"),
             DevAntFighter
@@ -36,6 +53,7 @@ class MultiDevAgentEnv(MujocoEnv):
             os.path.join(os.path.dirname(__file__), "assets", "test_sg_dev_ant_body.xml"),
             DevAntFighter
         ),
+        
         'dev_bug':(
             os.path.join(os.path.dirname(__file__), "assets", "dev_bug_body.xml"),
             DevBug
@@ -59,6 +77,59 @@ class MultiDevAgentEnv(MujocoEnv):
         'sg_dev_spider_fighter':(
             os.path.join(os.path.dirname(__file__), "assets", "sg_dev_spider_body.xml"),
             DevSpiderFighter
+        ),
+        'test_dev_spider_fighter': (
+            os.path.join(os.path.dirname(__file__), "assets", "test_dev_spider_body.xml"),
+            DevSpiderFighter
+        ),
+        'test_sg_dev_spider_fighter': (
+            os.path.join(os.path.dirname(__file__), "assets", "test_sg_dev_spider_body.xml"),
+            DevSpiderFighter
+        ),
+        'dev_humanoid': (
+            os.path.join(os.path.dirname(__file__), "assets", "dev_humanoid_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevHumanoid
+        ),
+        'dev_humanoid_hn': (
+            os.path.join(os.path.dirname(__file__), "assets", "dev_humanoid_body_hn.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevHumanoidHN
+        ),
+        'dev_humanoid_dn': (
+            os.path.join(os.path.dirname(__file__), "assets", "dev_humanoid_body_dn.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevHumanoidDN
+        ),
+        'humanoid': (
+            os.path.join(os.path.dirname(__file__), "assets", "humanoid_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            Humanoid
+        ),
+        'dev_ant_turn': (
+            os.path.join(os.path.dirname(__file__), "assets", "dev_ant_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevAntTurn
+        ),
+        'sg_dev_ant_turn': (
+            os.path.join(os.path.dirname(__file__), "assets", "sg_dev_ant_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevAntTurn
+        ),
+        'dev_ant_turn_simple': (
+            os.path.join(os.path.dirname(__file__), "assets", "dev_ant_simple_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevAntTurnSimple
+        ),
+        'sg_dev_ant_turn_simple': (
+            os.path.join(os.path.dirname(__file__), "assets", "sg_dev_ant_simple_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            DevAntTurnSimple
+        ),
+        'ant_turn': (
+            os.path.join(os.path.dirname(__file__), "assets", "ant_body.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
+            AntTurn
         ),
     }
     WORLD_XML = os.path.join(os.path.dirname(__file__), "assets", "world_body.xml")
@@ -147,15 +218,15 @@ class MultiDevAgentEnv(MujocoEnv):
         self._set_action_space()
         self.metadata = self.env_scene.metadata
         
-        gid = self.env_scene.geom_names.index('rightgoal')
-        self.RIGHT_GOAL = self.env_scene.model.geom_pos[gid][0]
-        gid = self.env_scene.geom_names.index('leftgoal')
-        self.LEFT_GOAL = self.env_scene.model.geom_pos[gid][0]
-        for i in range(self.n_agents):
-            if self.agents[i].get_qpos()[0] > 0:
-                self.agents[i].set_goal(self.LEFT_GOAL)
-            else:
-                self.agents[i].set_goal(self.RIGHT_GOAL)
+        # gid = self.env_scene.geom_names.index('rightgoal')
+        # self.RIGHT_GOAL = self.env_scene.model.geom_pos[gid][0]
+        # gid = self.env_scene.geom_names.index('leftgoal')
+        # self.LEFT_GOAL = self.env_scene.model.geom_pos[gid][0]
+        # for i in range(self.n_agents):
+        #     if self.agents[i].get_qpos()[0] > 0:
+        #         self.agents[i].set_goal(self.LEFT_GOAL)
+        #     else:
+        #         self.agents[i].set_goal(self.RIGHT_GOAL)
 
     def reload_init_mujoco_env(self, **kwargs):
         if hasattr(self, "env_scene"):
@@ -169,15 +240,15 @@ class MultiDevAgentEnv(MujocoEnv):
         self._set_action_space()
         self.metadata = self.env_scene.metadata
         
-        gid = self.env_scene.geom_names.index('rightgoal')
-        self.RIGHT_GOAL = self.env_scene.model.geom_pos[gid][0]
-        gid = self.env_scene.geom_names.index('leftgoal')
-        self.LEFT_GOAL = self.env_scene.model.geom_pos[gid][0]
-        for i in range(self.n_agents):
-            if self.agents[i].get_qpos()[0] > 0:
-                self.agents[i].set_goal(self.LEFT_GOAL)
-            else:
-                self.agents[i].set_goal(self.RIGHT_GOAL)
+        # gid = self.env_scene.geom_names.index('rightgoal')
+        # self.RIGHT_GOAL = self.env_scene.model.geom_pos[gid][0]
+        # gid = self.env_scene.geom_names.index('leftgoal')
+        # self.LEFT_GOAL = self.env_scene.model.geom_pos[gid][0]
+        # for i in range(self.n_agents):
+        #     if self.agents[i].get_qpos()[0] > 0:
+        #         self.agents[i].set_goal(self.LEFT_GOAL)
+        #     else:
+        #         self.agents[i].set_goal(self.RIGHT_GOAL)
 
     def load_tmp_mujoco_env(
             self, 
@@ -207,15 +278,15 @@ class MultiDevAgentEnv(MujocoEnv):
         self._set_action_space()
         self.metadata = self.env_scene.metadata
         
-        gid = self.env_scene.geom_names.index('rightgoal')
-        self.RIGHT_GOAL = self.env_scene.model.geom_pos[gid][0]
-        gid = self.env_scene.geom_names.index('leftgoal')
-        self.LEFT_GOAL = self.env_scene.model.geom_pos[gid][0]
-        for i in range(self.n_agents):
-            if self.agents[i].get_qpos()[0] > 0:
-                self.agents[i].set_goal(self.LEFT_GOAL)
-            else:
-                self.agents[i].set_goal(self.RIGHT_GOAL)
+        # gid = self.env_scene.geom_names.index('rightgoal')
+        # self.RIGHT_GOAL = self.env_scene.model.geom_pos[gid][0]
+        # gid = self.env_scene.geom_names.index('leftgoal')
+        # self.LEFT_GOAL = self.env_scene.model.geom_pos[gid][0]
+        # for i in range(self.n_agents):
+        #     if self.agents[i].get_qpos()[0] > 0:
+        #         self.agents[i].set_goal(self.LEFT_GOAL)
+        #     else:
+        #         self.agents[i].set_goal(self.RIGHT_GOAL)
 
     def _past_limit(self):
         if self._max_episode_steps <= self._elapsed_steps:
@@ -264,6 +335,8 @@ class MultiDevAgentEnv(MujocoEnv):
         self._elapsed_steps += 1
         for i in range(self.n_agents):
             self.agents[i].before_step()
+
+        # frame = self.env_scene.mujoco_renderer.render("rgb_array",  camera_name='agent0/tilted')    
         
         self.env_scene.simulate(actions)
         move_rews = []
@@ -286,6 +359,8 @@ class MultiDevAgentEnv(MujocoEnv):
             rews.append(float(goal_rews[i] + self.move_reward_weight * move_rews[i]))
         rews = tuple(rews)
         terminateds = self._get_done(dones, game_done)
+
+        # infos.append(frame)
         infos = tuple(infos)
         obses = self._get_obs()
         
@@ -316,7 +391,7 @@ class MultiDevAgentEnv(MujocoEnv):
             try:
                 self.load_tmp_mujoco_env(self.world_xml_path, cur_xml_strs, \
                                      self.agent_scopes, self.ini_pos, self.ini_euler, self.rgb, **self.kwargs)
-                print(self._env_xml_str)
+                # print(self._env_xml_str)
             except:
                 print("Warning: Errors occur when loading xml files.")
                 terminateds = tuple([True, True])

@@ -28,6 +28,8 @@ class LoggerRL:
         self.stats_loggers['reward'].log(reward)
         if 'dist' in info:
             self.stats_loggers['dist'].log(info['dist'])
+        if 'fw' in info:
+            self.episode_reward -= info['fw']
         if self.use_c_reward:
             self.episode_c_reward += c_reward
             self.stats_loggers['c_reward'].log(c_reward)
@@ -63,6 +65,7 @@ class LoggerRL:
         logger.avg_reward = logger.stats_loggers['reward'].avg()
         logger.min_dist = logger.stats_loggers['dist'].min()
         logger.max_dist = logger.stats_loggers['dist'].max()
+        logger.avg_dist = logger.stats_loggers['dist'].avg()
         if logger.use_c_reward:
             logger.total_c_reward = logger.stats_loggers['c_reward'].total()
             logger.avg_c_reward = logger.stats_loggers['c_reward'].avg()

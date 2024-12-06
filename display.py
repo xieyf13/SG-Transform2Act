@@ -30,7 +30,8 @@ def main():
     parser.add_argument('--ckpt_dir', type=str, default=None)
     parser.add_argument('--ckpt', type=str, default='best')
     parser.add_argument('--symmetric', type=str2bool, default=True)
-    parser.add_argument('--gpu_index', type=int, default=0)
+    parser.add_argument('--gpu_index', type=int, default=-1)
+    parser.add_argument('--num_episode', type=int, default=1)
     args = parser.parse_args()
     # Load config file
     args.run_dir = os.path.split(args.cfg)[0] + '/'
@@ -63,11 +64,13 @@ def main():
     # ----------------------------------------------------------------------------#
     dtype = torch.float64
     torch.set_default_dtype(dtype)
-    # device = torch.device('cpu')
-    device = torch.device('cuda', index=args.gpu_index) 
-    if torch.cuda.is_available():
-        torch.cuda.set_device(args.gpu_index)
-    # np.random.seed(cfg.seed)
+    if args.gpu_index == -1:
+        device = torch.device('cpu')
+    else:
+        device = torch.device('cuda', index=args.gpu_index) 
+        if torch.cuda.is_available():
+            torch.cuda.set_device(args.gpu_index)
+        # np.random.seed(cfg.seed)
     # torch.manual_seed(cfg.seed)
     
     # ----------------------------------------------------------------------------#
@@ -77,6 +80,8 @@ def main():
     # runner = MultiEvoAgentRunner(cfg, logger, dtype, device, 
     #                              num_threads=args.num_threads, training=False)
 
+    torch.set_num_threads(1)
+
     if cfg.runner_type == "multi-agent-runner":
         runner = MultiAgentRunner(cfg, logger, dtype, device, training=False, ckpt_dir=args.ckpt_dir, ckpt=ckpt)
     elif cfg.runner_type == "selfplay-agent-runner":
@@ -84,7 +89,7 @@ def main():
     elif cfg.runner_type == "multi-evo-agent-runner":
         runner = MultiEvoAgentRunner(cfg, logger, dtype, device, training=False, ckpt_dir=args.ckpt_dir, ckpt=ckpt)
     
-    runner.display(num_episode=1, mean_action=False)
+    runner.display(num_episode=args.num_episode, mean_action=False, ckpt_dir=args.ckpt_dir)
 
 if __name__ == "__main__":
     main()

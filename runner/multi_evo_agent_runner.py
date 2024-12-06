@@ -138,6 +138,7 @@ class MultiEvoAgentRunner(BaseRunner):
             logger.info("Agent_{} gets train_num_steps: {:.2f}.".format(i, logs[i].num_steps))
             logger.info("Agent_{} gets train_avg_episode_len: {:.2f}.".format(i, logs[i].avg_episode_len))
             logger.info("Agent_{} gets train_avg_episode_reward: {:.2f}.".format(i, logs[i].avg_episode_reward))
+            # logger.info("Agent_{} gets train_avg_episode_reward_nfr: {:.2f}.".format(i, logs[i].avg_episode_reward-logs[i].avg_dist))
             logger.info("Agent_{} gets train_min_dist: {:.2f}.".format(i, logs[i].min_dist))
             logger.info("Agent_{} gets train_max_dist: {:.2f}.".format(i, logs[i].max_dist))
             logger.info("Agent_{} gets train_win rate: {:.2f}.".format(i, t_win_rate[i]))
@@ -146,6 +147,7 @@ class MultiEvoAgentRunner(BaseRunner):
             logger.info("Agent_{} gets eval_num_steps: {:.2f}.".format(i, log_evals[i].num_steps))
             logger.info("Agent_{} gets eval eval_avg_episode_len: {:.2f}.".format(i, log_evals[i].avg_episode_len))
             logger.info("Agent_{} gets eval eval_avg_episode_reward: {:.2f}.".format(i, log_evals[i].avg_episode_reward))
+            # logger.info("Agent_{} gets eval eval_avg_episode_reward_nfr: {:.2f}.".format(i, log_evals[i].avg_episode_reward-log_evals[i].avg_dist))
             logger.info("Agent_{} gets eval_min_dist: {:.2f}.".format(i, log_evals[i].min_dist))
             logger.info("Agent_{} gets eval_max_dist: {:.2f}.".format(i, log_evals[i].max_dist))
             logger.info("Agent_{} gets eval_win rate: {:.2f}.".format(i, win_rate[i]))
@@ -167,6 +169,8 @@ class MultiEvoAgentRunner(BaseRunner):
             # writer.add_scalar('train_R_avg_{}'.format(i), logs[i].avg_reward, epoch)
             writer.add_scalar('train_R_eps_avg_{}'.format(i), logs[i].avg_episode_reward, epoch)
             writer.add_scalar('eval_R_eps_avg_{}'.format(i), log_evals[i].avg_episode_reward, epoch)
+            # writer.add_scalar('train_Rnf_eps_avg_{}'.format(i), logs[i].avg_episode_reward-logs[i].avg_dist, epoch)
+            # writer.add_scalar('eval_Rnf_eps_avg_{}'.format(i), log_evals[i].avg_episode_reward-log_evals[i].avg_dist, epoch)
             # writer.add_scalar('best_eval_R_eps_avg_{}'.format(i), log_best_evals[i].avg_episode_reward, epoch)
             # writer.add_scalar('eval_R_avg_{}'.format(i), log_evals[i].avg_reward, epoch)
 
@@ -438,14 +442,15 @@ class MultiEvoAgentRunner(BaseRunner):
                     if len(design_params1) > 10:
                         design_params1 = random.sample(design_params1, 10)
 
-                    for d in design_params0:
-                        file_path = self.run_dir + '/' + '0.csv'
-                        d = [self.epoch] + list(d)
-                        write_csv_data(file_path, d)
-                    for d in design_params1:
-                        file_path = self.run_dir + '/' + '1.csv'
-                        d = [self.epoch] + list(d)
-                        write_csv_data(file_path, d)
+                    if not eval:
+                        for d in design_params0:
+                            file_path = self.run_dir + '/' + '0.csv'
+                            d = [self.epoch] + list(d)
+                            write_csv_data(file_path, d)
+                        for d in design_params1:
+                            file_path = self.run_dir + '/' + '1.csv'
+                            d = [self.epoch] + list(d)
+                            write_csv_data(file_path, d)
 
                     # merge batch data and log data from multiprocessings
                     ma_buffer = self.traj_cls(memories).buffers
@@ -504,27 +509,27 @@ class MultiEvoAgentRunner(BaseRunner):
                         total_scores_1[pid_1] = total_score_1
                         design_params_1[pid_1] = design_param_1
                     
-                    design_params0 = []
-                    design_params1 = []
-                    for i in range(nthreads):
-                        for l in design_params_0[i][0]:
-                            design_params0.append(l)
-                        for l in design_params_1[i][1]:
-                            design_params1.append(l)
+                    # design_params0 = []
+                    # design_params1 = []
+                    # for i in range(nthreads):
+                    #     for l in design_params_0[i][0]:
+                    #         design_params0.append(l)
+                    #     for l in design_params_1[i][1]:
+                    #         design_params1.append(l)
 
-                    if len(design_params0) > 10:
-                        design_params0 = random.sample(design_params0, 10)
-                    if len(design_params1) > 10:
-                        design_params1 = random.sample(design_params1, 10)
+                    # if len(design_params0) > 10:
+                    #     design_params0 = random.sample(design_params0, 10)
+                    # if len(design_params1) > 10:
+                    #     design_params1 = random.sample(design_params1, 10)
 
-                    for d in design_params0:
-                        file_path = self.run_dir + '/' + '0.csv'
-                        d = [self.epoch] + list(d)
-                        write_csv_data(file_path, d)
-                    for d in design_params1:
-                        file_path = self.run_dir + '/' + '1.csv'
-                        d = [self.epoch] + list(d)
-                        write_csv_data(file_path, d)
+                    # for d in design_params0:
+                    #     file_path = self.run_dir + '/' + '0.csv'
+                    #     d = [self.epoch] + list(d)
+                    #     write_csv_data(file_path, d)
+                    # for d in design_params1:
+                    #     file_path = self.run_dir + '/' + '1.csv'
+                    #     d = [self.epoch] + list(d)
+                    #     write_csv_data(file_path, d)
 
                     # merge batch data and log data from multiprocessings
                     ma_buffer_0 = self.traj_cls(memories_0).buffers
@@ -596,7 +601,7 @@ class MultiEvoAgentRunner(BaseRunner):
                 self.logger.critical(f"save best checkpoint with agent_{i}'s rewards {self.learners[i].best_reward:.2f}!")
                 save('%s/%s/best.p' % (self.model_dir, "agent_"+str(i)), i)
     
-    def display(self, num_episode=3, mean_action=True):
+    def display(self, num_episode=3, mean_action=True, ckpt_dir=None):
         t_start = time.time()
         # total score record: [agent_0_win_times, agent_1_win_times, games_num]
         total_score = [0 for _ in self.learners]
@@ -619,20 +624,29 @@ class MultiEvoAgentRunner(BaseRunner):
                     actions = []
                     for i, learner in self.learners.items():
                         if hasattr(learner, 'flag') and self.env.agents[i].flag == "evo":
-                            actions.append(learner.policy_net.select_action([state_var[i]], use_mean_action).squeeze().numpy().astype(np.float64))
+                            actions.append(learner.policy_net.select_action([state_var[i]], use_mean_action).squeeze().cpu().numpy().astype(np.float64))
                         elif hasattr(learner, 'flag') and self.env.agents[i].flag == "dev":
-                            actions.append(learner.policy_net.select_action([state_var[i]], use_mean_action).squeeze().numpy().astype(np.float64))
+                            actions.append(learner.policy_net.select_action([state_var[i]], use_mean_action).squeeze().cpu().numpy().astype(np.float64))
                         else:
-                            actions.append(learner.policy_net.select_action(state_var[i], use_mean_action).squeeze().numpy().astype(np.float64))
+                            actions.append(learner.policy_net.select_action(state_var[i], use_mean_action).squeeze().cpu().numpy().astype(np.float64))
                 next_states, env_rewards, terminateds, truncated, infos = self.env.step(actions)
                 
                 # 使用 MuJoCo 的渲染方法
-                frame = self.env.env_scene.mujoco_renderer.render(render_mode='rgb_array')
+                # frame = self.env.env_scene.mujoco_renderer.render(render_mode='rgb_array')
 
-                #保存图片
-                img = Image.fromarray(frame)
+                # # #保存图片
+                # img = Image.fromarray(frame)
                 # img.save('test.jpg')
-                imgs.append(img)
+                # imgs.append(img)
+
+                # if len(infos) >1:
+                #     frame = infos[-1]
+                #     frame = np.flipud(frame)
+
+                #     # #保存图片
+                #     img = Image.fromarray(frame)
+                #     img.save('test.jpg')
+                #     imgs.append(img)
 
                 # normalize states
                 for i, learner in self.learners.items():
@@ -667,8 +681,8 @@ class MultiEvoAgentRunner(BaseRunner):
             
             total_reward.append(episode_reward)
 
-            if _ == 0:
-                imgs[0].save('test.gif', save_all=True, append_images=imgs[1:], duration=30, loop=0)
+            # if _ == 0:
+            #     imgs[0].save('test_devhuman.gif', save_all=True, append_images=imgs[1:], duration=30, loop=0)
 
         def average(list):
             total = sum(list)
@@ -700,7 +714,11 @@ class MultiEvoAgentRunner(BaseRunner):
         # import csv
 
         # Append results to test.csv
-        with open('test1.csv', mode='a', newline='') as file:
+        if ckpt_dir:
+            save_path = ckpt_dir + '/test.csv'
+        else:
+            save_path = 'test.csv'
+        with open(save_path, mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([self.learners[0].epoch+1, agent0_reward, agent0_win_rate, agent1_reward, agent1_win_rate])
 

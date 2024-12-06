@@ -21,40 +21,99 @@ class MultiEvoAgentEnv(MujocoEnv):
             os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base.xml"),
             EvoAnt
         ),
-        'evo_ant_turn': (
+        'evo_ant_fighter': (
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
-            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn.xml"),
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_fighter.xml"),
+            EvoAntFighter
+        ),
+        'sg_evo_ant_fighter': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "sg_evo_ant_body_base_fighter.xml"),
+            EvoAntFighter
+        ),
+        'evo_ant_turn_sgt2a': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_sgt2a.xml"),
             EvoAntTurn
         ),
-        'evo_ant_turn1': (
+        'evo_ant_turn_sgt2a_fr': (
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
-            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn1.xml"),
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_sgt2a_fr.xml"),
+            EvoAntTurnFR
+        ),
+        'evo_ant_turn_sgt2a_jsmlp': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_sgt2a_jsmlp.xml"),
             EvoAntTurn
         ),
-        'evo_ant_turn2': (
+
+        'evo_ant_turn_sgt2ap_t2av': (
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
-            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn2.xml"),
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_sgt2ap_t2av.xml"),
             EvoAntTurn
         ),
-        'evo_ant_turn3': (
+
+
+        'evo_ant_turn_t2ap_sgt2av': (
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
-            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn3.xml"),
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_t2ap_sgt2av.xml"),
             EvoAntTurn
         ),
-        'evo_ant_turn4': (
+
+
+        'evo_ant_turn_t2awojsmlp': (
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
-            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn4.xml"),
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_t2awojsmlp.xml"),
             EvoAntTurn
         ),
-        'evo_ant_turn5': (
+        'evo_ant_turn_t2awojsmlp_fr': (
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
             # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
-            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn5.xml"),
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_t2awojsmlp_fr.xml"),
+            EvoAntTurnFR
+        ),
+        'evo_ant_turn_t2awojsmlp_dn': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_t2awojsmlp_dn.xml"),
+            EvoAntTurnDN
+        ),
+        'evo_ant_turn_t2awojsmlp_hn': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_t2awojsmlp_hn.xml"),
+            EvoAntTurnHN
+        ),
+        # 'evo_ant_turn2': (
+        #     # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+        #     # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+        #     os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn2.xml"),
+        #     EvoAntTurn
+        # ),
+        # 'evo_ant_turn3': (
+        #     # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+        #     # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+        #     os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn3.xml"),
+        #     EvoAntTurn
+        # ),
+        'evo_ant_turn_t2a': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_t2a.xml"),
+            EvoAntTurn
+        ),
+        'evo_ant_turn_t2awfixpos': (
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base2.xml"),
+            # os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base1.xml"), # 
+            os.path.join(os.path.dirname(__file__), "assets", "evo_ant_body_base_turn_t2awfixpos.xml"),
             EvoAntTurn
         ),
         # 'evo_ant_fighter': (
@@ -63,7 +122,7 @@ class MultiEvoAgentEnv(MujocoEnv):
         # ),
     }
     WORLD_XML = os.path.join(os.path.dirname(__file__), "assets", "world_body.xml")
-    GOAL_REWARD = 10000
+    GOAL_REWARD = 1000
 
     def __init__(
         self, 
@@ -346,7 +405,6 @@ class MultiEvoAgentEnv(MujocoEnv):
             except:
                 print("Warning: Errors occur when loading xml files.")
                 terminateds = tuple([True, True])
-            
             if self.cur_t == self.cfg.skel_transform_nsteps:
                 self.transit_attribute_transform()
 

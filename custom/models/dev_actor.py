@@ -44,9 +44,12 @@ class DevPolicy(nn.Module):
             self.control_norm = RunningNorm(self.sim_obs_dim)
             cur_dim = self.sim_obs_dim
 
+        z_num = cfg.cfg.get('z_num', 6)
+        msg_dim = cfg.cfg.get('msg_dim', 32)
+        z_dim = cfg.cfg.get('z_dim', 16)
 
-        if 'egnn' in cfg.cfg and cfg.cfg['egnn'] and ((self.agent.scope == 'agent0' and 'sg'in cfg.cfg['env_name'].split('-')[-3]) or (self.agent.scope == 'agent1' and 'sg'in cfg.cfg['env_name'].split('-')[-2])):
-            self.frame_gnn = SGNN(state_dim = cur_dim//len(self.agent.body_ids), attr_fixed_dim = 0, attr_design_dim = 0, msg_dim = 32, p_step = 3, z_num = 7)
+        if 'egnn' in cfg.cfg and cfg.cfg['egnn'] and ((self.agent.scope == 'agent0' and 'sg'in cfg.cfg['env_name'].split('-')[-3]) or (self.agent.scope == 'agent1' and 'sg'in cfg.cfg['env_name'].split('-')[-2]) or ('turn'in cfg.cfg['env_name'].split('-')[-5])):
+            self.frame_gnn = SGNN(state_dim = cur_dim//len(self.agent.body_ids), attr_fixed_dim = 0, attr_design_dim = 0, msg_dim = msg_dim, p_step = 3, z_num = z_num, z_dim=z_dim)
         else:
             self.frame_gnn = None
 
@@ -97,8 +100,12 @@ class DevPolicy(nn.Module):
         x_dict = defaultdict(list)
         design_mask = defaultdict(list)
 
+        stage_inds= list(zip(*x))[0]
+        stage_inds = torch.cat(stage_inds).cpu().numpy()
+        
         for i, x_i in enumerate(x):
-            cur_stage = stages[int(x_i[0].item())]
+            # cur_stage = stages[int(x_i[0].item())] # TODO: 慢
+            cur_stage = stages[stage_inds[i]] # 快
             x_dict[cur_stage].append(x_i)
             for stage in stages:
                 design_mask[stage].append(cur_stage == stage)

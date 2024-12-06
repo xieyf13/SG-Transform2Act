@@ -19,12 +19,44 @@ register(
 )
 
 register(
-    id='robo-sumo-evoants-v0',
-    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    id='robo-sumo-ants-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['dev_ant_fighter', 'dev_ant_fighter'],
+    kwargs={'agent_names': ['ant_fighter', 'ant_fighter'],
             'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
             'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='robo-sumo-evoants-v0',
+    entry_point='competevo.evo_envs:RoboSumoEvoEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_fighter', 'evo_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.25), (1, 0, 1.25)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='robo-sumo-sgevoants-v0',
+    entry_point='competevo.evo_envs:RoboSumoEvoEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_evo_ant_fighter', 'sg_evo_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.25), (1, 0, 1.25)],
             'ini_euler': [(0, 0, 0), (0, 0, 180)],
             # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
             'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
@@ -99,6 +131,54 @@ register(
 )
 
 register(
+    id='robo-sumo-sgant-devant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_ant_fighter', 'dev_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='robo-sumo-sgant-ant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_ant_fighter', 'ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='robo-sumo-devant-ant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['dev_ant_fighter', 'ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
     id='test-robo-sumo-sgdevant-devant-v0',
     entry_point='competevo.evo_envs:RoboSumoDevEnv',
     disable_env_checker=True,
@@ -113,6 +193,105 @@ register(
             'max_radius': 4.5,
             },
 )
+
+register(
+    id='test-robo-sumo-sgant-ant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['test_sg_ant_fighter', 'test_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='test-robo-sumo-sgdevant-sgant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['test_sg_dev_ant_fighter', 'test_sg_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='robo-sumo-sgdevant-sgant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_dev_ant_fighter', 'sg_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='test-robo-sumo-sgdevant-ant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['test_sg_dev_ant_fighter', 'test_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='robo-sumo-sgdevant-ant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_dev_ant_fighter', 'ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+
+register(
+    id='test-robo-sumo-sgant-devant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['test_sg_ant_fighter', 'test_dev_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+
 
 register(
     id='robo-sumo-sgdevant-sgdevant-v0',
@@ -130,6 +309,21 @@ register(
             },
 )
 
+register(
+    id='robo-sumo-sgant-sgant-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_ant_fighter', 'sg_ant_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],#红队sg 蓝队dev
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
 
 
 register(
@@ -153,6 +347,22 @@ register(
     entry_point='competevo.evo_envs:RoboSumoDevEnv',
     disable_env_checker=True,
     kwargs={'agent_names': ['sg_dev_spider_fighter', 'sg_dev_spider_fighter'],
+            'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
+            'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
+            'ini_euler': [(0, 0, 0), (0, 0, 180)],
+            'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'max_episode_steps': 500,
+            'min_radius': 2.5,
+            'max_radius': 4.5,
+            },
+)
+
+register(
+    id='test-robo-sumo-sgdevspider-devspider-v0',
+    entry_point='competevo.evo_envs:RoboSumoDevEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['test_sg_dev_spider_fighter', 'test_dev_spider_fighter'],
             'world_xml_path': "./competevo/evo_envs/assets/world_body_arena.xml",
             'init_pos': [(-1, 0, 1.5), (1, 0, 1.5)],
             'ini_euler': [(0, 0, 0), (0, 0, 180)],
@@ -225,10 +435,10 @@ register(
 )
 
 register(
-    id='turn-to-goal-evoant-v0',
+    id='turn-to-goal-evoant-sgt2a',
     entry_point='competevo.evo_envs:MultiEvoAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['evo_ant_turn'],
+    kwargs={'agent_names': ['evo_ant_turn_sgt2a'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],
@@ -241,10 +451,314 @@ register(
 )
 
 register(
-    id='turn-to-goal-evoant-v1',
+    id='turn-to-goal-evoant-sgt2a-fr',
     entry_point='competevo.evo_envs:MultiEvoAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['evo_ant_turn1'],
+    kwargs={'agent_names': ['evo_ant_turn_sgt2a_fr'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-t2ap-sgt2av',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_t2ap_sgt2av'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-sgt2ap-t2av',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_sgt2ap_t2av'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-sgt2awjsmlp',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_sgt2a_jsmlp'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-devant-v0',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['dev_ant_turn'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-devant-simple',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['dev_ant_turn_simple'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-sgdevant-v0',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_dev_ant_turn'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-sgdevant-simple',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['sg_dev_ant_turn_simple'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-ant-v0',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['ant_turn'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-sgant-v0',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['ant_turn'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-devhuman-v0',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['dev_humanoid'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 1.4)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-devhuman-hn',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['dev_humanoid_hn'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 1.4)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-devhuman-dn',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['dev_humanoid_dn'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 1.4)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-sgdevhuman-v0',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['dev_humanoid'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 1.4)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-human-v0',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['humanoid'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 1.4)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-sghuman-v0',
+    entry_point='competevo.evo_envs:MultiDevAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['humanoid'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 1.4)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-t2awojsmlp',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_t2awojsmlp'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-t2awojsmlp-fr',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_t2awojsmlp_fr'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-t2awojsmlp-dn',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_t2awojsmlp_dn'],
+            # 'init_pos': [(-2, 0, 0.75)],
+            # 'ini_euler': [(0, 0, 0)],
+            'init_pos': [(0, 0, 0.75)],
+            'ini_euler': [(0, 0, 0)],
+            # 'rgb': [(0.98, 0.54, 0.56), (0.11, 0.56, 1)],
+            # 'rgb': [(0.98, 0.87, 0.67), (0.98, 0.87, 0.67)],
+            'rgb': [(0.98, 0.87, 0.67)],
+            'max_episode_steps': 1000,
+            },
+)
+
+register(
+    id='turn-to-goal-evoant-t2awojsmlp-hn',
+    entry_point='competevo.evo_envs:MultiEvoAgentEnv',
+    disable_env_checker=True,
+    kwargs={'agent_names': ['evo_ant_turn_t2awojsmlp_hn'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],
@@ -289,10 +803,10 @@ register(
 )
 
 register(
-    id='turn-to-goal-evoant-v4',
+    id='turn-to-goal-evoant-t2a',
     entry_point='competevo.evo_envs:MultiEvoAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['evo_ant_turn4'],
+    kwargs={'agent_names': ['evo_ant_turn_t2a'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],
@@ -305,10 +819,10 @@ register(
 )
 
 register(
-    id='turn-to-goal-evoant-v5',
+    id='turn-to-goal-evoant-t2awfixpos',
     entry_point='competevo.evo_envs:MultiEvoAgentEnv',
     disable_env_checker=True,
-    kwargs={'agent_names': ['evo_ant_turn5'],
+    kwargs={'agent_names': ['evo_ant_turn_t2awfixpos'],
             # 'init_pos': [(-2, 0, 0.75)],
             # 'ini_euler': [(0, 0, 0)],
             'init_pos': [(0, 0, 0.75)],
